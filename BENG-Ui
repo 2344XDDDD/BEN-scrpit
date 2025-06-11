@@ -216,7 +216,7 @@ end
       DropShadow.BackgroundTransparency = 1.000
       DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
       DropShadow.Size = UDim2.new(1, 10, 1, 10)
-      DropShadow.Image = "rbxassetid://85336439948115" --背景
+      DropShadow.Image = "rbxassetid://123884084306269" --背景
       DropShadow.ImageColor3 = Color3.fromRGB(255,255,255)
       DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 
@@ -452,10 +452,10 @@ Open.BorderSizePixel = 0
 Open.Size = UDim2.new(2, 5, 2, 5)
 Open.Active = true
 Open.Draggable = true
-Open.Image = "rbxassetid://95914047887735"
+Open.Image = "rbxassetid://123884084306269"
 Open.MouseButton1Click:Connect(function()
   Main.Visible = not Main.Visible
-  Open.Image = Main.Visible and "rbxassetid://90351093471000" or "rbxassetid://95914047887735" --开关的图
+  Open.Image = Main.Visible and "rbxassetid://90351093471000" or "rbxassetid://123884084306269" --开关的图
 end)
 
 UICorner_2.CornerRadius = UDim.new(0, 90)
@@ -583,7 +583,7 @@ UIG.Parent = Open
           SectionOpened.BackgroundTransparency = 1.000
           SectionOpened.BorderSizePixel = 0
           SectionOpened.Size = UDim2.new(0, 26, 0, 26)
-          SectionOpened.Image = "rbxassetid://95914047887735"
+          SectionOpened.Image = "rbxassetid://123884084306269"
           SectionOpened.ImageTransparency = 1.000
     
           SectionToggle.Name = "SectionToggle"
