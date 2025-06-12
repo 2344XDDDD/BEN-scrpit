@@ -5135,7 +5135,7 @@ ImageTransparency=.6,
 }),
 ac("TextLabel",{
 AutomaticSize="XY",
-Text="This tab is empty",
+Text="未添加",
 ThemeTag={
 TextColor3="Text"
 },
