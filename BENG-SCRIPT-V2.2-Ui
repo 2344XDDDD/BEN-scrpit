@@ -1,4 +1,6 @@
 
+
+
 local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}end return a.cache[b].c end}do function a.a()
 
 
@@ -393,7 +395,6 @@ Text="#FFFFFF",
 Placeholder="#999999",
 Background="#0e0e10",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Light={
 Name="白色",
@@ -403,7 +404,6 @@ Text="#000000",
 Placeholder="#777777",
 Background="#e4e4e7",
 Button="#18181b",
-Icon="#a1a1aa",
 },
 Rose={
 Name="玫瑰色",
@@ -413,7 +413,6 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Blue={
 Name="深蓝色",
@@ -423,7 +422,6 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Orange ={
 Name="橙色",
@@ -433,7 +431,6 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Desert ={
 Name="沙漠金色",
@@ -443,9 +440,8 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
-blue={
+laicai={
 Name="青色",
 Accent="#00FFFF",
 Outline="#FFFFFF",
@@ -453,7 +449,6 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Purple={
 Name="紫色",
@@ -463,7 +458,6 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Brown={
 Name="咖啡色",
@@ -473,7 +467,6 @@ Text="#FFFFFF",
 Placeholder="#6B7280",
 Background="#4c0519",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Plant={
 Name="绿色",
@@ -483,7 +476,6 @@ Text="#e6ffe5",
 Placeholder="#7d977d",
 Background="#1a2e05",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Red={
 Name="红色",
@@ -493,7 +485,6 @@ Text="#ffeded",
 Placeholder="#977d7d",
 Background="#450a0a",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Yellow={
 Name="黄色",
@@ -503,7 +494,6 @@ Text="#ffeded",
 Placeholder="#977d7d",
 Background="#1e1b4b",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 Indigo={
 Name="蓝色",
@@ -513,7 +503,6 @@ Text="#ffeded",
 Placeholder="#977d7d",
 Background="#1e1b4b",
 Button="#52525b",
-Icon="#a1a1aa",
 },
 
 }end function a.c()
@@ -3430,7 +3419,7 @@ Desc=n.Desc or nil,
 Type=n.Type or"Input",
 Locked=n.Locked or false,
 InputIcon=n.InputIcon or false,
-PlaceholderText=n.Placeholder or"Enter Text...",
+PlaceholderText=n.Placeholder or"输入...",
 Value=n.Value or"",
 Callback=n.Callback or function()end,
 ClearTextOnFocus=n.ClearTextOnFocus or false,
@@ -5240,7 +5229,7 @@ Colorpicker="palette",
 
 local j=ac("TextBox",{
 Text="",
-PlaceholderText="Search...",
+PlaceholderText="搜索",
 ThemeTag={
 PlaceholderColor3="Placeholder",
 TextColor3="Text",
@@ -7019,18 +7008,17 @@ end
 o:CreateTopbarButton("Close","x",function()
 e(o.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 o:Dialog{
-Icon="trash-2",
-Title="Close Window",
-Content="Do you want to close this window? You will not be able to open it again.",
+Title="关闭窗口",
+Content="确定要关闭窗口吗",
 Buttons={
 {
-Title="Cancel",
+Title="不关闭窗口",
 
 Callback=function()end,
 Variant="Secondary",
 },
 {
-Title="Close Window",
+Title="关闭窗口",
 
 Callback=function()o:Close():Destroy()end,
 Variant="Primary",
@@ -7259,7 +7247,7 @@ end
 return nil
 end
 
-aa:SetTheme"Dark"
+aa:SetTheme"黑色"
 
 function aa.GetThemes(i)
 return ac
