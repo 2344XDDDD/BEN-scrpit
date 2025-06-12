@@ -6600,7 +6600,7 @@ w.Visible=true
 end
 end)
 
-local M=v and"Press "..o.ToggleKey.Name.." to open the Window"or"Click the Button to open the Window"
+local M=v and"Press "..o.ToggleKey.Name.." 打开窗口"or"请点击上面的Ui打开窗口！"
 
 if not o.IsOpenButtonEnabled then
 k=true
@@ -6608,8 +6608,8 @@ end
 if not k then
 k=not k
 n.WindUI:Notify{
-Title="已关闭窗口",
-Content="已关闭窗口 请点击上面的Ui！"..M,
+Title="崩脚本",
+Content="已关闭窗口！"..M,
 Icon="eye-off",
 Duration=5,
 }
