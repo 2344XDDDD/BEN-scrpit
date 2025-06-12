@@ -447,7 +447,7 @@ Background="#4c0519",
 Button="#52525b",
 Icon="#a1a1aa",
 },
-Bj={
+blue={
 Name="青色",
 Accent="#00FFFF",
 Outline="#FFFFFF",
@@ -7260,7 +7260,7 @@ end
 return nil
 end
 
-aa:SetTheme"黑色"
+aa:SetTheme"Dark"
 
 function aa.GetThemes(i)
 return ac
