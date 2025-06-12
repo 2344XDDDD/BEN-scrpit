@@ -1,6 +1,4 @@
 
-
-
 local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}end return a.cache[b].c end}do function a.a()
 
 
@@ -3432,7 +3430,7 @@ Desc=n.Desc or nil,
 Type=n.Type or"Input",
 Locked=n.Locked or false,
 InputIcon=n.InputIcon or false,
-PlaceholderText=n.Placeholder or"输入...",
+PlaceholderText=n.Placeholder or"Enter Text...",
 Value=n.Value or"",
 Callback=n.Callback or function()end,
 ClearTextOnFocus=n.ClearTextOnFocus or false,
@@ -5242,7 +5240,7 @@ Colorpicker="palette",
 
 local j=ac("TextBox",{
 Text="",
-PlaceholderText="搜索",
+PlaceholderText="Search...",
 ThemeTag={
 PlaceholderColor3="Placeholder",
 TextColor3="Text",
@@ -7021,17 +7019,18 @@ end
 o:CreateTopbarButton("Close","x",function()
 e(o.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 o:Dialog{
-Title="关闭窗口",
-Content="确定要关闭窗口吗",
+Icon="trash-2",
+Title="Close Window",
+Content="Do you want to close this window? You will not be able to open it again.",
 Buttons={
 {
-Title="不关闭窗口",
+Title="Cancel",
 
 Callback=function()end,
 Variant="Secondary",
 },
 {
-Title="关闭窗口",
+Title="Close Window",
 
 Callback=function()o:Close():Destroy()end,
 Variant="Primary",
@@ -7260,7 +7259,7 @@ end
 return nil
 end
 
-aa:SetTheme"黑色"
+aa:SetTheme"Dark"
 
 function aa.GetThemes(i)
 return ac
