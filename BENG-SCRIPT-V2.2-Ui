@@ -6608,8 +6608,8 @@ end
 if not k then
 k=not k
 n.WindUI:Notify{
-Title="Minimize",
-Content="You've closed the Window. "..M,
+Title="已关闭窗口",
+Content="已关闭窗口 请点击上面的Ui！"..M,
 Icon="eye-off",
 Duration=5,
 }
