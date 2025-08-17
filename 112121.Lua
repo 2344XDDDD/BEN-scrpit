@@ -254,11 +254,3 @@ local Toggle = Tab:Toggle({
         end
     end
 })
-
-local Lighting = game:GetService('Lighting')
-local StarsGui
-local OriginalAmbient = Lighting.Ambient
-local OriginalOutdoorAmbient = Lighting.OutdoorAmbient
-local OriginalBrightness = Lighting.Brightness
-local OriginalClockTime = Lighting.ClockTime
-local OriginalSky = Lighting:FindFirstChildOfClass('Sky')
