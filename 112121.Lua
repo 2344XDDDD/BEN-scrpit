@@ -220,24 +220,3 @@ local Colorpicker = Tab:Colorpicker({
     end
 })
 
-local Toggle = Tab:Toggle({
-    Title = "慢动作 PvP",
-    Default = false,
-    Callback = function(enabled) 
-       if enabled then
-            local tween = TweenService:Create(
-                game,
-                TweenInfo.new(0.5),
-                { ClockTime = 0.25 }
-            )
-            tween:Play()
-            game:GetService('RunService'):Set3dRenderingEnabled(true)
-            workspace.Gravity = 100 -- Menos gravedad ayuda al efecto
-        else
-            local tween =
-                TweenService:Create(game, TweenInfo.new(0.5), { ClockTime = 1 })
-            tween:Play()
-            workspace.Gravity = 196.2 -- Gravedad por defecto
-        end
-    end
-})
