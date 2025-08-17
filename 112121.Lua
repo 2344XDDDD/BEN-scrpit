@@ -40,3 +40,19 @@ local Slider = Tab:Slider({
         game.Workspace.Gravity = Value
     end,
 })
+Window:Divider()
+local Tab = Window:Tab({
+    Title = 'FOV',
+    Icon = 'bird',
+    Locked = false,
+})
+
+local Toggle = Tab:Toggle({
+    Title = "启动 - FOV - 锁头",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(value) 
+        AimbotEnabled = value
+        FOVCircle.Visible = value
+    end
+})
