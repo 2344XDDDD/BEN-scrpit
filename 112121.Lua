@@ -11,7 +11,7 @@ local Slider = Tab:Slider({
     Value = {
         Min = 15,
         Max = 400,
-        Default = 70,
+        Default = 15,
     },
     Callback = function(value)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
@@ -24,7 +24,7 @@ local Slider = Tab:Slider({
     Value = {
         Min = 50,
         Max = 400,
-        Default = 70,
+        Default = 50,
     },
     Callback = function(Jump)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump
@@ -35,9 +35,9 @@ local Slider = Tab:Slider({
     Step = 1,
     
     Value = {
-        Min = 196.2,
+        Min = 196,
         Max = 400,
-        Default = 70,
+        Default = 196,
     },
     Callback = function(Value)
     game.Workspace.Gravity = Value
