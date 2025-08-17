@@ -1,0 +1,13 @@
+local Tab = Window:Tab({
+    Title = '主页',
+    Icon = 'bird',
+    Locked = false,
+})
+
+local Button = Tab:Button({
+    Title = '启动 - 脚本',
+    Desc = 'Test Button',
+    Locked = false,
+    Callback = function()
+    end,
+})
