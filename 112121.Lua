@@ -12,7 +12,7 @@ local Button = Tab:Button({
     loadstring(game:HttpGet("https://github.com/2344XDDDD/BEN-scrpit/edit/main/FOV.LUA"))()
     end
 })
-
+Window:Divider()
 local Tab = Window:Tab({
     Title = '功能',
     Icon = 'bird',
