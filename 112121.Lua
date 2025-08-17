@@ -21,14 +21,6 @@ local ScreenGui = Instance.new('ScreenGui', game.CoreGui)
 ScreenGui.IgnoreGuiInset = false
 ScreenGui.ResetOnSpawn = false
 
-local FOVCircle = Instance.new('Frame')
-FOVCircle.Name = 'FOV'
-FOVCircle.Parent = ScreenGui
-FOVCircle.AnchorPoint = Vector2.new(0.5, 0.5)
-FOVCircle.Position = UDim2.new(0.5, 0, 0.5, 0)
-FOVCircle.Size = UDim2.new(0, FOVRadius * 2, 0, FOVRadius * 2)
-FOVCircle.BackgroundTransparency = 1
-
 local UIStroke = Instance.new('UIStroke', FOVCircle)
 UIStroke.Thickness = 2
 UIStroke.Color = FOVColor
