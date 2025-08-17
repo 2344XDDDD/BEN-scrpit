@@ -48,6 +48,23 @@ StatsLabel.Font = Enum.Font.Code
 StatsLabel.TextSize = 18
 StatsLabel.TextXAlignment = Enum.TextXAlignment.Right
 
+local lastUpdate = tick()
+RunService.RenderStepped:Connect(function()
+    local fps = math.floor(1 / RunService.RenderStepped:Wait())
+    if tick() - lastUpdate >= 0.3 then
+        local ping = tonumber(
+            string.match(
+                game:GetService('Stats').Network.ServerStatsItem['Data Ping']
+                    :GetValueString(),
+                '%d+'
+            )
+        ) or 0
+        StatsLabel.Text = 'FPS: ' .. fps .. ' | Ping: ' .. ping .. 'ms'
+        lastUpdate = tick()
+    end
+end)
+
+
 local Tab = Window:Tab({
     Title = '功能',
     Icon = 'bird',
@@ -98,10 +115,23 @@ local Tab = Window:Tab({
 })
 
 local Toggle = Tab:Toggle({
-    Title = "启动 - FOV - 锁头",
+    Title = "启动 - 团队检查",
     Default = false,
-    Callback = function(Value) 
-        AimbotEnabled = Value
-        FOVCircle.Visible = Value
+    Callback = function(value) 
+TeamCheck = value
     end
+})
+
+local Slider = Tab:Slider({
+    Title = 'FOV - 尺寸',
+    Step = 1,
+
+    Value = {
+        Min = 50,
+        Max = 300,
+    },
+    Callback = function(value)
+        FOVRadius = value
+        FOVCircle.Size = UDim2.new(0, value * 2, 0, value * 2)
+    end,
 })
