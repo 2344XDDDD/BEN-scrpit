@@ -49,19 +49,6 @@ StatsLabel.TextSize = 18
 StatsLabel.TextXAlignment = Enum.TextXAlignment.Right
 
 local lastUpdate = tick()
-RunService.RenderStepped:Connect(function()
-    local fps = math.floor(1 / RunService.RenderStepped:Wait())
-    if tick() - lastUpdate >= 0.3 then
-        local ping = tonumber(
-            string.match(
-                game:GetService('Stats').Network.ServerStatsItem['Data Ping']
-                    :GetValueString(),
-                '%d+'
-            )
-        ) or 0
-        lastUpdate = tick()
-    end
-end)
 
 
 local Tab = Window:Tab({
