@@ -335,13 +335,6 @@ local Toggle = Tab:Toggle({
     end
 })
 
-
-
-
-
-
-
-
 -- Highlight
 local function ApplyHighlight(player)
     if not player.Character then
