@@ -214,3 +214,254 @@ local Tab = Window:Tab({
     Locked = false,
 })
 
+local Toggle = Tab:Toggle({
+    Title = "FOV - 彩虹",
+    Default = false,
+    Callback = function(value) 
+    FOVRainbow = value
+    end
+})
+local Colorpicker = Tab:Colorpicker({
+    Title = "FOV - 颜色",
+    Default = Color3.fromRGB(0, 255, 0),
+    Transparency = 0,
+    Locked = false,
+    Callback = function(value) 
+        FOVColor = value
+        if not FOVRainbow then
+            UIStroke.Color = value
+    end
+})
+
+local Toggle = Tab:Toggle({
+    Title = "慢动作 PvP",
+    Default = false,
+    Callback = function(enabled) 
+           if enabled then
+            local tween = TweenService:Create(
+                game,
+                TweenInfo.new(0.5),
+                { ClockTime = 0.25 }
+            )
+            tween:Play()
+            game:GetService('RunService'):Set3dRenderingEnabled(true)
+            workspace.Gravity = 100 -- Menos gravedad ayuda al efecto
+        else
+            local tween =
+                TweenService:Create(game, TweenInfo.new(0.5), { ClockTime = 1 })
+            tween:Play()
+            workspace.Gravity = 196.2 -- Gravedad por defecto
+        end
+    end
+})
+
+local Lighting = game:GetService('Lighting')
+local StarsGui
+local OriginalAmbient = Lighting.Ambient
+local OriginalOutdoorAmbient = Lighting.OutdoorAmbient
+local OriginalBrightness = Lighting.Brightness
+local OriginalClockTime = Lighting.ClockTime
+local OriginalSky = Lighting:FindFirstChildOfClass('Sky')
+
+local Toggle = Tab:Toggle({
+    Title = "慢动作 PvP",
+    Default = false,
+    Callback = function(value) 
+        if value then
+            -- Ajustes suaves de luz (crepúsculo)
+            Lighting.Ambient = Color3.fromRGB(120, 130, 140)
+            Lighting.OutdoorAmbient = Color3.fromRGB(90, 100, 110)
+            Lighting.Brightness = 1.5
+            Lighting.ClockTime = 18.5 -- atardecer muy suave
+
+            -- Cambiar cielo por uno con estrellas
+            if OriginalSky then
+                OriginalSky.Enabled = false
+            end
+            local PvPSky = Instance.new('Sky')
+            PvPSky.Name = 'PvPSky'
+            PvPSky.SkyboxBk = 'rbxassetid://1022207611' -- ejemplo cielo estrellado, cambia por uno que te guste
+            PvPSky.SkyboxDn = 'rbxassetid://1022207683'
+            PvPSky.SkyboxFt = 'rbxassetid://1022207746'
+            PvPSky.SkyboxLf = 'rbxassetid://1022207814'
+            PvPSky.SkyboxRt = 'rbxassetid://1022207886'
+            PvPSky.SkyboxUp = 'rbxassetid://1022207958'
+            PvPSky.Parent = Lighting
+
+            -- Estrellas sutiles en ScreenGui
+            StarsGui = Instance.new('ScreenGui', game.CoreGui)
+            StarsGui.Name = 'StarsGui'
+            StarsGui.IgnoreGuiInset = true
+            StarsGui.ResetOnSpawn = false
+
+            for i = 1, 50 do
+                local star = Instance.new('Frame')
+                star.Size = UDim2.new(0, 2, 0, 2)
+                star.Position = UDim2.new(math.random(), 0, math.random(), 0)
+                star.BackgroundColor3 = Color3.new(1, 1, 1)
+                star.BackgroundTransparency = 0.7
+                star.BorderSizePixel = 0
+                star.AnchorPoint = Vector2.new(0.5, 0.5)
+                star.Parent = StarsGui
+
+                coroutine.wrap(function()
+                    while StarsGui and StarsGui.Parent do
+                        star.BackgroundTransparency = 0.5
+                            + math.sin(tick() * math.random(1, 3)) * 0.4
+                        wait(0.1)
+                    end
+                end)()
+            end
+        else
+            -- Restaurar valores originales
+            Lighting.Ambient = OriginalAmbient
+            Lighting.OutdoorAmbient = OriginalOutdoorAmbient
+            Lighting.Brightness = OriginalBrightness
+            Lighting.ClockTime = OriginalClockTime
+
+            local PvPSky = Lighting:FindFirstChild('PvPSky')
+            if PvPSky then
+                PvPSky:Destroy()
+            end
+            if OriginalSky then
+                OriginalSky.Enabled = true
+            end
+
+            if StarsGui then
+                StarsGui:Destroy()
+                StarsGui = nil
+            end
+        end
+    end
+})
+
+
+
+
+
+
+
+
+-- Highlight
+local function ApplyHighlight(player)
+    if not player.Character then
+        return
+    end
+    local existing = player.Character:FindFirstChild('ESPHighlight')
+    if existing then
+        existing:Destroy()
+    end
+
+    local highlight = Instance.new('Highlight')
+    highlight.Name = 'ESPHighlight'
+    highlight.FillTransparency = 1
+    highlight.OutlineTransparency = 0
+    highlight.OutlineColor = HighlightColor
+    highlight.FillColor = HighlightColor
+    highlight.Enabled = ESPEnabled
+        and (not ESPTeamCheck or player.Team ~= LocalPlayer.Team)
+    highlight.Parent = player.Character
+end
+
+local function SetupCharacterHighlight(player)
+    if player ~= LocalPlayer then
+        player.CharacterAdded:Connect(function()
+            repeat
+                task.wait()
+            until player.Character
+                and player.Character:FindFirstChild('HumanoidRootPart')
+            ApplyHighlight(player)
+        end)
+    end
+end
+
+for _, player in ipairs(Players:GetPlayers()) do
+    SetupCharacterHighlight(player)
+    if player.Character then
+        ApplyHighlight(player)
+    end
+end
+
+Players.PlayerAdded:Connect(function(player)
+    SetupCharacterHighlight(player)
+end)
+
+-- Aimbot
+local function GetClosestTarget()
+    local closest = nil
+    local shortestDist = FOVRadius
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if
+            player ~= LocalPlayer
+            and player.Character
+            and player.Character:FindFirstChild('HumanoidRootPart')
+        then
+            if TeamCheck and player.Team == LocalPlayer.Team then
+                continue
+            end
+
+            local pos, onScreen = Camera:WorldToViewportPoint(
+                player.Character.HumanoidRootPart.Position
+            )
+            if onScreen then
+                local center = Vector2.new(
+                    Camera.ViewportSize.X / 2,
+                    Camera.ViewportSize.Y / 2
+                )
+                local dist = (Vector2.new(pos.X, pos.Y) - center).Magnitude
+
+                if dist <= shortestDist then
+                    if WallCheck then
+                        local origin = Camera.CFrame.Position
+                        local direction = (
+                            player.Character.HumanoidRootPart.Position - origin
+                        ).Unit * 1000
+                        local raycastParams = RaycastParams.new()
+                        raycastParams.FilterDescendantsInstances =
+                            { LocalPlayer.Character }
+                        raycastParams.FilterType =
+                            Enum.RaycastFilterType.Blacklist
+
+                        local result =
+                            workspace:Raycast(origin, direction, raycastParams)
+                        if
+                            result
+                            and result.Instance:IsDescendantOf(player.Character)
+                        then
+                            closest = player
+                            shortestDist = dist
+                        end
+                    else
+                        closest = player
+                        shortestDist = dist
+                    end
+                end
+            end
+        end
+    end
+
+    return closest
+end
+
+RunService.RenderStepped:Connect(function()
+    if FOVRainbow then
+        local hue = tick() % 5 / 5
+        local color = Color3.fromHSV(hue, 1, 1)
+        UIStroke.Color = color
+    end
+
+    if AimbotEnabled then
+        local target = GetClosestTarget()
+        if
+            target
+            and target.Character
+            and target.Character:FindFirstChild('HumanoidRootPart')
+        then
+            local head = target.Character.HumanoidRootPart.Position
+            local camPos = Camera.CFrame.Position
+            local newCF = CFrame.new(camPos, head)
+            Camera.CFrame = Camera.CFrame:Lerp(newCF, 0.4)
+        end
+    end
+end)
