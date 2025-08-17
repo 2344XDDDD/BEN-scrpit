@@ -7,7 +7,7 @@ local Tab = Window:Tab({
 
 local Button = Tab:Button({
     Title = "启动 - FOV - 脚本",
-    Locked = false,
+    Locked = true,
     Callback = function()
     loadstring(game:HttpGet("https://github.com/2344XDDDD/BEN-scrpit/edit/main/FOV.LUA"))()
     end
