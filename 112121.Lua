@@ -192,15 +192,3 @@ local Tab = Window:Tab({
     Locked = false,
 })
 
-local Colorpicker = Tab:Colorpicker({
-    Title = "FOV - 颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Transparency = 0,
-    Locked = false,
-    Callback = function(value) 
-        FOVColor = value
-        if not FOVRainbow then
-            UIStroke.Color = value
-    end
-})
-
