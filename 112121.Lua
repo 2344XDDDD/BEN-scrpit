@@ -214,13 +214,6 @@ local Tab = Window:Tab({
     Locked = false,
 })
 
-local Toggle = Tab:Toggle({
-    Title = "FOV - 彩虹",
-    Default = false,
-    Callback = function(value) 
-    FOVRainbow = value
-    end
-})
 local Colorpicker = Tab:Colorpicker({
     Title = "FOV - 颜色",
     Default = Color3.fromRGB(0, 255, 0),
