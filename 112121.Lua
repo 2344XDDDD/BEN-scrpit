@@ -99,10 +99,9 @@ local Tab = Window:Tab({
 
 local Toggle = Tab:Toggle({
     Title = "启动 - FOV - 锁头",
-    Type = "Checkbox",
     Default = false,
-    Callback = function(value) 
-        AimbotEnabled = value
-        FOVCircle.Visible = value
+    Callback = function(Value) 
+        AimbotEnabled = Value
+        FOVCircle.Visible = Value
     end
 })
