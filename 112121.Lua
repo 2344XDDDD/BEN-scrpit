@@ -206,3 +206,133 @@ local Colorpicker = Tab:Colorpicker({
         end
     end
 })
+Window:Divider()
+local Tab = Window:Tab({
+    Title = 'Visual',
+    Icon = 'bird',
+    Locked = false,
+})
+
+local Toggle = Tab:Toggle({
+    Title = "FOV - 彩虹",
+    Default = false,
+    Callback = function(value) 
+        FOVRainbow = value
+    end
+})
+
+local Colorpicker = Tab:Colorpicker({
+    Title = "FOV - 颜色",
+    Default = Color3.fromRGB(0, 255, 0),
+    Transparency = 0,
+    Locked = false,
+    Callback = function(value) 
+        FOVColor = value
+        if not FOVRainbow then
+            UIStroke.Color = value
+    end
+})
+
+local Toggle = Tab:Toggle({
+    Title = "慢动作 PvP",
+    Default = false,
+    Callback = function(enabled) 
+       if enabled then
+            local tween = TweenService:Create(
+                game,
+                TweenInfo.new(0.5),
+                { ClockTime = 0.25 }
+            )
+            tween:Play()
+            game:GetService('RunService'):Set3dRenderingEnabled(true)
+            workspace.Gravity = 100 -- Menos gravedad ayuda al efecto
+        else
+            local tween =
+                TweenService:Create(game, TweenInfo.new(0.5), { ClockTime = 1 })
+            tween:Play()
+            workspace.Gravity = 196.2 -- Gravedad por defecto
+        end
+    end
+})
+
+local Lighting = game:GetService('Lighting')
+local StarsGui
+local OriginalAmbient = Lighting.Ambient
+local OriginalOutdoorAmbient = Lighting.OutdoorAmbient
+local OriginalBrightness = Lighting.Brightness
+local OriginalClockTime = Lighting.ClockTime
+local OriginalSky = Lighting:FindFirstChildOfClass('Sky')
+
+local Toggle = Tab:Toggle({
+    Title = "软 PvP 天堂模式",
+    Default = false,
+    Callback = function(value) 
+    if value then
+            -- Ajustes suaves de luz (crepúsculo)
+            Lighting.Ambient = Color3.fromRGB(120, 130, 140)
+            Lighting.OutdoorAmbient = Color3.fromRGB(90, 100, 110)
+            Lighting.Brightness = 1.5
+            Lighting.ClockTime = 18.5 -- atardecer muy suave
+
+            -- Cambiar cielo por uno con estrellas
+            if OriginalSky then
+                OriginalSky.Enabled = false
+            end
+            local PvPSky = Instance.new('Sky')
+            PvPSky.Name = 'PvPSky'
+            PvPSky.SkyboxBk = 'rbxassetid://1022207611' -- ejemplo cielo estrellado, cambia por uno que te guste
+            PvPSky.SkyboxDn = 'rbxassetid://1022207683'
+            PvPSky.SkyboxFt = 'rbxassetid://1022207746'
+            PvPSky.SkyboxLf = 'rbxassetid://1022207814'
+            PvPSky.SkyboxRt = 'rbxassetid://1022207886'
+            PvPSky.SkyboxUp = 'rbxassetid://1022207958'
+            PvPSky.Parent = Lighting
+
+            -- Estrellas sutiles en ScreenGui
+            StarsGui = Instance.new('ScreenGui', game.CoreGui)
+            StarsGui.Name = 'StarsGui'
+            StarsGui.IgnoreGuiInset = true
+            StarsGui.ResetOnSpawn = false
+
+            for i = 1, 50 do
+                local star = Instance.new('Frame')
+                star.Size = UDim2.new(0, 2, 0, 2)
+                star.Position = UDim2.new(math.random(), 0, math.random(), 0)
+                star.BackgroundColor3 = Color3.new(1, 1, 1)
+                star.BackgroundTransparency = 0.7
+                star.BorderSizePixel = 0
+                star.AnchorPoint = Vector2.new(0.5, 0.5)
+                star.Parent = StarsGui
+
+                coroutine.wrap(function()
+                    while StarsGui and StarsGui.Parent do
+                        star.BackgroundTransparency = 0.5
+                            + math.sin(tick() * math.random(1, 3)) * 0.4
+                        wait(0.1)
+                    end
+                end)()
+            end
+        else
+            -- Restaurar valores originales
+            Lighting.Ambient = OriginalAmbient
+            Lighting.OutdoorAmbient = OriginalOutdoorAmbient
+            Lighting.Brightness = OriginalBrightness
+            Lighting.ClockTime = OriginalClockTime
+
+            local PvPSky = Lighting:FindFirstChild('PvPSky')
+            if PvPSky then
+                PvPSky:Destroy()
+            end
+            if OriginalSky then
+                OriginalSky.Enabled = true
+            end
+
+            if StarsGui then
+                StarsGui:Destroy()
+                StarsGui = nil
+            end
+        end
+    end
+})
+
+local OptimTab = Window:CreateTab('Optimización', 4483362458)
