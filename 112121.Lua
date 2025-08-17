@@ -1,5 +1,19 @@
 
 local Tab = Window:Tab({
+    Title = '脚本',
+    Icon = 'bird',
+    Locked = false,
+})
+
+local Button = Tab:Button({
+    Title = "启动 - FOV - 脚本",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://github.com/2344XDDDD/BEN-scrpit/edit/main/FOV.LUA"))()
+    end
+})
+
+local Tab = Window:Tab({
     Title = '功能',
     Icon = 'bird',
     Locked = false,
