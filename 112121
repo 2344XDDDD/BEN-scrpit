@@ -1,13 +1,19 @@
 local Tab = Window:Tab({
-    Title = '主页',
+    Title = '功能',
     Icon = 'bird',
     Locked = false,
 })
 
-local Button = Tab:Button({
-    Title = '启动 - 脚本',
-    Desc = 'Test Button',
-    Locked = false,
-    Callback = function()
-    end,
+local Slider = Tab:Slider({
+    Title = "Slider",
+    Step = 1,
+    
+    Value = {
+        Min = 15,
+        Max = 120,
+        Default = 70,
+    },
+    Callback = function(value)
+        print(value)
+    end
 })
