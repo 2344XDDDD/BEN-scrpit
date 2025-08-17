@@ -114,22 +114,6 @@ local Tab = Window:Tab({
     Locked = false,
 })
 
-local Toggle = Tab:Toggle({
-    Title = "启动 - 团队检查",
-    Default = false,
-    Callback = function(value) 
-TeamCheck = value
-    end
-})
-
-local Toggle = Tab:Toggle({
-    Title = "启动 - 墙面检查",
-    Default = false,
-    Callback = function(value) 
-WallCheck = value
-    end
-})
-
 local Slider = Tab:Slider({
     Title = 'FOV - 尺寸',
     Step = 1,
@@ -142,81 +126,6 @@ local Slider = Tab:Slider({
         FOVRadius = value
         FOVCircle.Size = UDim2.new(0, value * 2, 0, value * 2)
     end,
-})
-local Colorpicker = Tab:Colorpicker({
-    Title = "FOV - 颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Transparency = 0,
-    Locked = false,
-    Callback = function(value) 
-        FOVColor = value
-        if not FOVRainbow then
-            UIStroke.Color = value
-    end
-})
-Window:Divider()
-local Tab = Window:Tab({
-    Title = 'ESP',
-    Icon = 'bird',
-    Locked = false,
-})
-
-local Toggle = Tab:Toggle({
-    Title = "启动 - 突出显示",
-    Default = false,
-    Callback = function(value) 
-     ESPEnabled = value
-        for _, player in ipairs(Players:GetPlayers()) do
-            if player ~= LocalPlayer then
-                local highlight = player.Character
-                    and player.Character:FindFirstChild('ESPHighlight')
-                if highlight then
-                    highlight.Enabled = value
-                        and (
-                            not ESPTeamCheck
-                            or player.Team ~= LocalPlayer.Team
-                        )
-                end
-            end
-        end
-    end
-})
-
-local Toggle = Tab:Toggle({
-    Title = "启动 - 团队检查亮点",
-    Default = false,
-    Callback = function(value) 
-     ESPEnabled = value
-    ESPTeamCheck = value
-        for _, player in ipairs(Players:GetPlayers()) do
-            if player ~= LocalPlayer then
-                local highlight = player.Character
-                    and player.Character:FindFirstChild('ESPHighlight')
-                if highlight then
-                    highlight.Enabled = ESPEnabled
-                        and (not value or player.Team ~= LocalPlayer.Team)
-                end
-            end
-        end
-    end
-})
-
-local Colorpicker = Tab:Colorpicker({
-    Title = "高亮颜色",
-    Default = Color3.fromRGB(0, 255, 0),
-    Transparency = 0,
-    Locked = false,
-    Callback = function(value) 
-            HighlightColor = value
-        for _, player in ipairs(Players:GetPlayers()) do
-            local highlight = player.Character
-                and player.Character:FindFirstChild('ESPHighlight')
-            if highlight then
-                highlight.OutlineColor = value
-                highlight.FillColor = value
-            end
-        end
-    end
 })
 
 -- Highlight
