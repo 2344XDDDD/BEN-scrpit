@@ -334,5 +334,3 @@ local Toggle = Tab:Toggle({
         end
     end
 })
-
-local OptimTab = Window:CreateTab('Optimización', 4483362458)
