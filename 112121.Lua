@@ -12,7 +12,7 @@ local Slider = Tab:Slider({
         Min = 15,
         Max = 400,
     },
-    Callback = function(value) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value end,
+    Callback = function(Value) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value end,
 })
 local Slider = Tab:Slider({
     Title = "跳跃",
