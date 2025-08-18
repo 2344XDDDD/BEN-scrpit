@@ -31,7 +31,7 @@ local Slider = Tab:Slider({
     Step = 1,
     
     Value = {
-        Min = 196.2,
+        Min = 196,
         Max = 400,
     },
     Callback = function(Value)
@@ -43,8 +43,8 @@ local Slider = Tab:Slider({
     Step = 1,
     
     Value = {
-        Min = 196.2,
-        Max = 400,
+        Min = 70,
+        Max = 240,
     },
     Callback = function(v)
        game.Workspace.CurrentCamera.FieldOfView = v
@@ -55,8 +55,8 @@ local Slider = Tab:Slider({
     Step = 1,
     
     Value = {
-        Min = 196.2,
-        Max = 400,
+        Min = 128,
+        Max = 10000,
     },
     Callback = function(Value)
      game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = Value
