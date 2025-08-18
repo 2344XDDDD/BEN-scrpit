@@ -12,7 +12,7 @@ local Slider = Tab:Slider({
         Min = 15,
         Max = 400,
     },
-    Callback = function(Value) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value end,
+    Callback = function(value) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value end,
 })
 local Slider = Tab:Slider({
     Title = "跳跃",
@@ -61,4 +61,51 @@ local Slider = Tab:Slider({
     Callback = function(Value)
      game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = Value
     end,
+})
+Tab:Divider()
+local Toggle = Tab:Toggle({
+    Title = "夜视",
+    Default = false,
+    Callback = function(Value) 
+        if Value then
+
+                game.Lighting.Ambient = Color3.new(1, 1, 1)
+
+            else
+
+                game.Lighting.Ambient = Color3.new(0, 0, 0)
+
+            end
+    end
+})
+local Toggle = Tab:Toggle({
+    Title = "自动互动",
+    Default = false,
+    Callback = function(state) 
+        if state then
+            autoInteract = true
+            while autoInteract do
+                for _, descendant in pairs(workspace:GetDescendants()) do
+                    if descendant:IsA("ProximityPrompt") then
+                        fireproximityprompt(descendant)
+                    end
+                end
+                task.wait(0.25) -- Adjust the wait time as needed
+            end
+        else
+            autoInteract = false
+        end
+    end
+})
+local Toggle = Tab:Toggle({
+    Title = "夜视",
+    Default = false,
+    Callback = function(Value) 
+        Jump = Value
+        game.UserInputService.JumpRequest:Connect(function()
+            if Jump then
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState("Jumping")
+            end
+        end)
+    end
 })
