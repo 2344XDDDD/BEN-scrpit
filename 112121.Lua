@@ -1,5 +1,6 @@
 local Tab = Window:Tab({
     Title = '功能',
+    Icon = 'bird',
     Locked = false,
 })
 
@@ -188,3 +189,69 @@ local Input = Tab:Input({
     end)
     end
 })
+local Button = Tab:Button({
+    Title = "范围",
+    Desc = "普通",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/jiNwDbCN"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "范围",
+    Desc = "中等",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/jiNwDbCN"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "范围",
+    Desc = "全图",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/KKY9EpZU"))()
+    end
+})
+local Button = Tab:Button({
+    Title = "范围",
+    Desc = "终极",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/CAQ9x4A7"))()
+    end
+})
+Tab:Divider()
+local Button = Tab:Button({
+    Title = "自瞄",
+    Desc = "200",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/b5CuDuer/raw",true))()
+    end
+})
+local Button = Tab:Button({
+    Title = "自瞄",
+    Desc = "300",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/nIyVhrvV/raw",true))()
+    end
+})
+local Button = Tab:Button({
+    Title = "自瞄",
+    Desc = "400",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/LQuP7sjj/raw",true))()
+    end
+})
+local Button = Tab:Button({
+    Title = "自瞄",
+    Desc = "脚本",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/sgbs/main/%E4%B8%81%E4%B8%81%20%E6%B1%89%E5%8C%96%E8%87%AA%E7%9E%84.txt"))()
+    end
+})
+Tab:Divider()
