@@ -98,7 +98,7 @@ local Toggle = Tab:Toggle({
     end
 })
 local Toggle = Tab:Toggle({
-    Title = "夜视",
+    Title = "无限跳",
     Default = false,
     Callback = function(Value) 
         Jump = Value
