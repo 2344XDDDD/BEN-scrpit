@@ -109,3 +109,58 @@ local Toggle = Tab:Toggle({
         end)
     end
 })
+local Toggle = Tab:Toggle({
+    Title = "ESP",
+    Default = false,
+    Callback = function(state) 
+        for _, player in pairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                if state then
+                    local highlight = Instance.new("Highlight")
+                    highlight.Parent = player.Character
+                    highlight.Adornee = player.Character
+
+                    local nameLabel = Instance.new("TextLabel")
+                    nameLabel.Parent = billboard
+                    nameLabel.Size = UDim2.new(1, 0, 1, 0)
+                    nameLabel.BackgroundTransparency = 1
+                    nameLabel.Text = player.Name
+                    nameLabel.TextColor3 = Color3.new(1, 1, 1)
+                    nameLabel.TextStrokeTransparency = 0.5
+                    nameLabel.TextScaled = true
+
+                    local circle = Instance.new("ImageLabel")
+                    circle.Parent = billboard
+                    circle.Size = UDim2.new(0, 50, 0, 50)
+                    circle.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center the circle
+                    circle.AnchorPoint = Vector2.new(0.5, 0.5) -- Set the anchor point to the center
+                    circle.BackgroundTransparency = 1
+                    circle.Image = "rbxassetid://2200552246" -- Replace with your circle image asset ID
+                else
+                    if player.Character:FindFirstChildOfClass("Highlight") then
+                        player.Character:FindFirstChildOfClass("Highlight"):Destroy()
+                    end
+                end
+            end
+        end
+    end
+})
+Tab:Divider()
+
+local Button = Tab:Button({
+    Title = "导管",
+    Desc = "R15",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+    end
+})
+
+local Button = Tab:Button({
+    Title = "导管",
+    Desc = "R6",
+    Locked = false,
+    Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+    end
+})
