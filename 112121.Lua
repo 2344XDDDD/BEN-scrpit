@@ -1,6 +1,6 @@
+Window:Divider()
 local Tab = Window:Tab({
     Title = '功能',
-    Icon = 'bird',
     Locked = false,
 })
 
