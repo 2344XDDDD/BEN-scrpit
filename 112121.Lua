@@ -266,15 +266,6 @@ local Tab = Window:Tab({
     Locked = false,
 })
 
-local Button = Tab:Button({
-    Title = "自瞄",
-    Desc = "脚本",
-    Locked = false,
-    Callback = function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/sgbs/main/%E4%B8%81%E4%B8%81%20%E6%B1%89%E5%8C%96%E8%87%AA%E7%9E%84.txt"))()
-    end
-})
-
 Tab:Divider()
 local transparencySlider = Tab:Slider({
     Title = "设置 - UI:透明度",
