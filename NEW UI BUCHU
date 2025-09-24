@@ -1006,7 +1006,7 @@ Background="#0c0404",
 Button="#991b1b",
 Icon="#dc2626",
 },
-MonokaiPro={
+gold={
 Name="gold",
 Accent="#fcc867ff",
 Dialog="#fcc867ff",
