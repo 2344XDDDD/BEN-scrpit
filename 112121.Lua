@@ -276,7 +276,7 @@ local Tab = Window:Tab({
     Title = '杂项 - 设置',
     Locked = false,
 })
-local Paragraph Tab:Paragraph({
+Tab:Paragraph({
     Title = "Customize Interface",
     Desc = "Personalize your experience",
     Image = "palette",
@@ -305,15 +305,14 @@ for name, _ in pairs(WindUI:GetThemes()) do
 end
 
 local themeDropdown = Tab:Dropdown({
-    Title = "Ui-颜色设置",
-    Values = themes,
-    SearchBarEnabled = true,
-    MenuWidth = 280,
-    Value = "Dark",
+    Title = "Select Theme",
+    Multi = false,
+    AllowNone = false,
+    Value = nil,
+    Values = themeValues,
     Callback = function(theme)
-        canchangedropdown = false
         WindUI:SetTheme(theme)
-        WindUI:Notify({
+                WindUI:Notify({
             Title = "通知",
             Content = theme,
             Duration = 2
