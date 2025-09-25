@@ -1,3 +1,50 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+
+local player = Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "FOVCircleUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = CoreGui
+
+local circleRadius = 120
+local circleColor = Color3.fromRGB(0,255,0)
+local lockEnabled = false
+local LockSmoothness = 0.15
+
+local LockTarget = {
+    Head = true,
+    Torso = false,
+    LeftHand = false,
+    RightHand = false
+}
+
+local FOVCircle = Instance.new("Frame")
+FOVCircle.Size = UDim2.new(0, circleRadius*2, 0, circleRadius*2)
+FOVCircle.Position = UDim2.new(0.5, -circleRadius, 0.5, -circleRadius)
+FOVCircle.BackgroundTransparency = 1
+FOVCircle.BorderSizePixel = 0
+FOVCircle.Visible = false
+FOVCircle.Parent = ScreenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0.5, 0)
+corner.Parent = FOVCircle
+
+local stroke = Instance.new("UIStroke")
+stroke.Thickness = 2
+stroke.Color = circleColor
+stroke.Parent = FOVCircle
+
+RunService.RenderStepped:Connect(function()
+    if FOVCircle.Visible then
+        FOVCircle.Position = UDim2.new(0.5, -circleRadius, 0.5, -circleRadius)
+    end
+end)
 
 Window:Divider()
 local Tab = Window:Tab({
@@ -262,6 +309,135 @@ local Tab = Window:Tab({
     Title = 'FOV',
     Locked = false,
 })
+local Button = Tab:Toggle({
+    Title = "FOV",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state)
+        FOVCircle.Visible = state
+        if not state and lockEnabled then
+            lockEnabled = false
+            LockToggle:Set(false)
+        end
+    end
+})
+
+local Button = Tab:Colorpicker({
+    Title = "FOV设置颜色",
+    Desc = "设置FOV颜色",
+    Default = circleColor,
+    Callback = function(color)
+        circleColor = color
+        stroke.Color = color
+    end
+})
+
+local Button = Tab:Slider({
+    Title = "FOV设置大小",
+    Step = 1,
+    Value = { Min = 50, Max = 300, Default = circleRadius },
+    Callback = function(value)
+        circleRadius = value
+        FOVCircle.Size = UDim2.new(0, circleRadius*2, 0, circleRadius*2)
+        FOVCircle.Position = UDim2.new(0.5, -circleRadius, 0.5, -circleRadius)
+    end
+})
+
+local Button = Tab:Slider({
+    Title = "锁头力度",
+    Step = 1,
+    Value = { Min = 1, Max = 100, Default = 15 },
+    Callback = function(value)
+        LockSmoothness = value / 100
+    end
+})
+local Button = Tab:Dropdown({
+    Title = "锁定功能",
+    Values = { "头", "身体", "左手", "右手" },
+    Value =  "头" ,
+    Callback = function(selected)
+        LockTarget.Head = false
+        LockTarget.Torso = false
+        LockTarget.LeftHand = false
+        LockTarget.RightHand = false
+        
+        for _, part in pairs(selected) do
+            if part == "头部" then LockTarget.Head = true
+            elseif part == "身体" then LockTarget.Torso = true
+            elseif part == "左手" then LockTarget.LeftHand = true
+            elseif part == "右手" then LockTarget.RightHand = true
+            end
+        end
+    end
+})
+
+local Button = Tab:Toggle({
+    Title = "锁头",
+    Desc = "鼠标右击",
+    Icon = "bird",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state)
+        if state then
+            if not FOVCircle.Visible then
+                WindUI:Notify({ 
+                    Title = '通知',
+                    Content = '请开启FOV',
+                    Duration = 3,
+                })
+                LockToggle:Set(false)
+                lockEnabled = false
+                return
+            else
+                lockEnabled = true
+            end
+        else
+            lockEnabled = false
+        end
+    end
+})
+
+local Button = Tab:Connect(function()
+    if lockEnabled and FOVCircle.Visible and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
+        local closest, dist = nil, FOVCircle.Size.X.Offset / 2
+        for _,plr in pairs(Players:GetPlayers()) do
+            if plr ~= player and plr.Character then
+                local partToLock = nil
+                if LockTarget.Head and plr.Character:FindFirstChild("Head") then
+                    partToLock = plr.Character.Head
+                elseif LockTarget.Torso and plr.Character:FindFirstChild("HumanoidRootPart") then
+                    partToLock = plr.Character.HumanoidRootPart
+                elseif LockTarget.LeftHand and plr.Character:FindFirstChild("LeftHand") then
+                    partToLock = plr.Character.LeftHand
+                elseif LockTarget.RightHand and plr.Character:FindFirstChild("RightHand") then
+                    partToLock = plr.Character.RightHand
+                end
+                
+                if partToLock then
+                    local pos, onScreen = camera:WorldToViewportPoint(partToLock.Position)
+                    if onScreen then
+                        local screenCenter = Vector2.new(camera.ViewportSize.X/2, camera.ViewportSize.Y/2)
+                        local d = (Vector2.new(pos.X, pos.Y) - screenCenter).Magnitude
+                        if d < dist then
+                            dist = d
+                            closest = partToLock
+                        end
+                    end
+                end
+            end
+        end
+
+        if closest then
+            local targetPos = camera:WorldToViewportPoint(closest.Position)
+            local screenCenter = Vector2.new(camera.ViewportSize.X/2, camera.ViewportSize.Y/2)
+            local delta = Vector2.new(targetPos.X, targetPos.Y) - screenCenter
+            local move = getrenv().mousemoverel or mousemoverel
+            if move then
+                move(delta.X * LockSmoothness, delta.Y * LockSmoothness)
+            end
+        end
+    end
+end)
 Tab:Divider()
 
 local Tab = Window:Tab({
@@ -295,3 +471,20 @@ local transparencySlider = Tab:Slider({
         WindUI.TransparencyValue = tonumber(value)
     end
 })
+
+local themeValues = {}
+for name, _ in pairs(WindUI:GetThemes()) do
+    table.insert(themeValues, name)
+end
+
+local themeDropdown = Tabs.WindowTab:Dropdown({
+    Title = "Select Theme",
+    Multi = false,
+    AllowNone = false,
+    Value = nil,
+    Values = themeValues,
+    Callback = function(theme)
+        WindUI:SetTheme(theme)
+    end
+})
+themeDropdown:Select(WindUI:GetCurrentTheme())
