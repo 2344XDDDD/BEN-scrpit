@@ -1,3 +1,50 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+
+local player = Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "FOVCircleUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = CoreGui
+
+local circleRadius = 120
+local circleColor = Color3.fromRGB(0,255,0)
+local lockEnabled = false
+local LockSmoothness = 0.15
+
+local LockTarget = {
+    Head = true,
+    Torso = false,
+    LeftHand = false,
+    RightHand = false
+}
+
+local FOVCircle = Instance.new("Frame")
+FOVCircle.Size = UDim2.new(0, circleRadius*2, 0, circleRadius*2)
+FOVCircle.Position = UDim2.new(0.5, -circleRadius, 0.5, -circleRadius)
+FOVCircle.BackgroundTransparency = 1
+FOVCircle.BorderSizePixel = 0
+FOVCircle.Visible = false
+FOVCircle.Parent = ScreenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0.5, 0)
+corner.Parent = FOVCircle
+
+local stroke = Instance.new("UIStroke")
+stroke.Thickness = 2
+stroke.Color = circleColor
+stroke.Parent = FOVCircle
+
+RunService.RenderStepped:Connect(function()
+    if FOVCircle.Visible then
+        FOVCircle.Position = UDim2.new(0.5, -circleRadius, 0.5, -circleRadius)
+    end
+end)
 
 Window:Divider()
 local Tab = Window:Tab({
@@ -262,7 +309,7 @@ local Tab = Window:Tab({
     Title = 'FOV',
     Locked = false,
 })
-local Button = Tab:Toggle({
+local Toggle = Tab:Toggle({
     Title = "FOV",
     Type = "Checkbox",
     Default = false,
@@ -275,7 +322,7 @@ local Button = Tab:Toggle({
     end
 })
 
-local Button = Tab:Colorpicker({
+local Colorpicker = Tab:Colorpicker({
     Title = "FOV设置颜色",
     Desc = "设置FOV颜色",
     Default = circleColor,
@@ -285,7 +332,7 @@ local Button = Tab:Colorpicker({
     end
 })
 
-local Button = Tab:Slider({
+local Slider = Tab:Slider({
     Title = "FOV设置大小",
     Step = 1,
     Value = { Min = 50, Max = 300, Default = circleRadius },
@@ -296,7 +343,7 @@ local Button = Tab:Slider({
     end
 })
 
-local Button = Tab:Slider({
+local Slider = Tab:Slider({
     Title = "锁头力度",
     Step = 1,
     Value = { Min = 1, Max = 100, Default = 15 },
@@ -304,10 +351,10 @@ local Button = Tab:Slider({
         LockSmoothness = value / 100
     end
 })
-local Button = Tab:Dropdown({
-    Title = "锁定功能",
-    Values = { "头", "身体", "左手", "右手" },
-    Value =  "头" ,
+local Dropdown = Tab:Dropdown({
+    Title = "锁定部位",
+    Values = { "头部", "身体", "左手", "右手" },
+    Value =  "头部" ,
     Callback = function(selected)
         LockTarget.Head = false
         LockTarget.Torso = false
@@ -430,7 +477,7 @@ for name, _ in pairs(WindUI:GetThemes()) do
     table.insert(themeValues, name)
 end
 
-local themeDropdown = Tabs.WindowTab:Dropdown({
+local themeDropdown = Tab:Dropdown({
     Title = "Select Theme",
     Multi = false,
     AllowNone = false,
