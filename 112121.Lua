@@ -276,6 +276,14 @@ local Tab = Window:Tab({
     Title = '杂项 - 设置',
     Locked = false,
 })
+local Paragraph Tab:Paragraph({
+    Title = "Customize Interface",
+    Desc = "Personalize your experience",
+    Image = "palette",
+    ImageSize = 20,
+    Color = "White"
+})
+
 Window:Divider()
 local transparencySlider = Tab:Slider({
     Title = "设置 - UI:透明度",
@@ -297,13 +305,20 @@ for name, _ in pairs(WindUI:GetThemes()) do
 end
 
 local themeDropdown = Tab:Dropdown({
-    Title = "Select Theme",
-    Multi = false,
-    AllowNone = false,
-    Value = nil,
-    Values = themeValues,
+    Title = "Ui-颜色设置",
+    Values = themes,
+    SearchBarEnabled = true,
+    MenuWidth = 280,
+    Value = "Dark",
     Callback = function(theme)
+        canchangedropdown = false
         WindUI:SetTheme(theme)
+        WindUI:Notify({
+            Title = "通知",
+            Content = theme,
+            Duration = 2
+        })
+        canchangedropdown = true
     end
 })
 themeDropdown:Select(WindUI:GetCurrentTheme())
