@@ -883,7 +883,7 @@ return{
             Placeholder={Color1="#101010", Color2="#303030"},
             Background={Color1="#101010", Color2="#303030"},
             Gradient={Color1="#101010", Color2="#303030"},
-            Button={Color1="#101010", Color2="#303030"},
+            Button={Color1="#15c7a9ff", Color2="#303030"},
             Icon={Color1="#101010", Color2="#303030"},
         },
 Light={
