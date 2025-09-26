@@ -876,15 +876,15 @@ return g end function a.d()
 return{
         Dark={
             Name="Dark",
-            Accent="#18181b",
-            Dialog="#161616",
-            Outline="#FFFFFF",
-            Text="#FFFFFF",
-            Placeholder="#999999",
-            Background="#101010",
+            Accent={Color1="#101010", Color2="#303030"},
+            Dialog={Color1="#101010", Color2="#303030"},
+            Outline={Color1="#101010", Color2="#303030"},
+            Text={Color1="#101010", Color2="#303030"},
+            Placeholder={Color1="#101010", Color2="#303030"},
+            Background={Color1="#101010", Color2="#303030"},
             Gradient={Color1="#101010", Color2="#303030"},
-            Button="#52525b",
-            Icon="#a1a1aa",
+            Button={Color1="#101010", Color2="#303030"},
+            Icon={Color1="#101010", Color2="#303030"},
         },
 Light={
 Name="Light",
