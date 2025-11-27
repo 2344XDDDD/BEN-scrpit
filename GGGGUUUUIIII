@@ -170,46 +170,39 @@ windowControls.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 windowControls.BackgroundTransparency = 1
 windowControls.BorderColor3 = Color3.fromRGB(0, 0, 0)
 windowControls.BorderSizePixel = 0
-windowControls.Size = UDim2.new(1, 0, 0, 31)
+windowControls.Size = UDim2.new(0, 0, 0, 31)  -- Start with size 0,0
+windowControls.Position = UDim2.new(0.5, 0, 0, 0)  -- Centered vertically
+windowControls.AnchorPoint = Vector2.new(0.5, 0)  -- Anchor point set to center
 
--- Create a TextLabel for the marquee effect
-local marqueeText = Instance.new("TextLabel")
-marqueeText.Name = "MarqueeText"
-marqueeText.Parent = windowControls
-marqueeText.Text = "Your scrolling text here!"
-marqueeText.TextSize = 24
-marqueeText.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Default color (RGB)
-marqueeText.BackgroundTransparency = 1
-marqueeText.Position = UDim2.new(0, 0, 0, 0)
-marqueeText.Size = UDim2.new(1, 0, 1, 0)
-marqueeText.TextXAlignment = Enum.TextXAlignment.Left
+-- Parent the windowControls to the screen
+windowControls.Parent = game:GetService("CoreGui")
 
--- Create a function to animate the marquee
-local function animateMarquee()
-    while true do
-        for i = 0, 1, 0.01 do
-            marqueeText.Position = UDim2.new(i, 0, 0, 0)
-            wait(0.03)
-        end
-        marqueeText.Position = UDim2.new(0, 0, 0, 0)
-    end
-end
+-- Create a Tween for the animation (fade and scale up)
+local tweenService = game:GetService("TweenService")
 
--- Start the marquee animation
-animateMarquee()
+local tweenInfo = TweenInfo.new(
+    0.5,  -- Duration (half a second)
+    Enum.EasingStyle.Bounce,  -- Easing style (bounce effect)
+    Enum.EasingDirection.Out,  -- Easing direction
+    0,  -- Number of times to repeat
+    false,  -- Should the tween reverse after completion? No
+    0  -- Delay before starting the tween
+)
 
--- Add RGB color tween for the text
-local function rgbTween()
-    while true do
-        for i = 0, 255, 5 do
-            marqueeText.TextColor3 = Color3.fromRGB(i, 255 - i, i)
-            wait(0.1)
-        end
-    end
-end
+-- Create the goal for the animation (full size and visible)
+local goal = {
+    Size = UDim2.new(1, 0, 0, 31),  -- Final size (full width)
+    BackgroundTransparency = 0,  -- Final transparency (visible)
+}
 
--- Start the RGB color change
-rgbTween()
+-- Create the tween
+local tween = tweenService:Create(windowControls, tweenInfo, goal)
+
+-- Play the animation when the windowControls appear
+tween:Play()
+
+-- Optionally, you can connect the tween to events if you need to trigger it after certain actions
+-- For example, you can trigger this when a button is clicked or an event happens.
 
 
 	local controls = Instance.new("Frame")
