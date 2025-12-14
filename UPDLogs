@@ -1,16 +1,31 @@
-
-New UPD | SCRIPT - V2.2 | X2.4.6.3
+New UPD | SCRIPT - V2.2 | X2.7.3.2
 New:
 ------------------------------------
-Add: Load SCRIPT and change the firmware on the homepage!
-Add: Add Server, Rejoin Server, and Exit Server
-Add: Added announcements to updates!
-Added version number to the top of the script UI!
-Added new firmware, scripts, and switches to the ESP!
-Added descriptions to all SOON items!
-Added Sec Icon version and status to the firmware change in BENG - SCRIPT!
-Added: SCRIPT All
-Fixed: BUG
-Fixed: ESP BUG
-Fixed: Hebei Tangxian Script Money Detection Error Issue This bug still exists and will be fixed in the next version!
+Add: Tobpar - Mac
+Add: Box
+Add: Border Settings
+Add: 99 Day Script
+Add: XenithHub
+Add: TP|SOON
+Add: FPS - Modified to 99999
+
+Fix: Game Selection Script Error
+------------------------------------
+
+2025/12/6 17:23
+New UPD | SCRIPT - V2.2 | X2.6.3.7
+New:
+------------------------------------
+Add: The long-awaited custom rounded corners, custom backgrounds, and Elements are now available. After modification, simply restart the script.
+Add: Added new feature 99 Days in the forest
+Added: Added New Firmware Script Startup Time and Script Used to the User Information | Injector Tab
+Added X-Ray to the Main Tab
+Added Icon - Language Selection to the Home Page (Under Development in the next version!)
+Add: 5 new themes!
+Add: The shadow on the back now has an animation!
+Add: The text for enabling the Elements UI will now be changed to BENG - SCRIPT Beta
+Fix: There is currently a firmware update that is blocked in ESP!
+Delete: The script in the Hebei Tangxian Tab
+
+Fix: Bug
 ------------------------------------
