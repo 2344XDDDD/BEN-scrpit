@@ -1,16 +1,30 @@
 
-新 UPD | SCRIPT - V2.2 | X2.4.6.3
+新 UPD | SCRIPT - V2.2 | X2.7.3.2
 New:
 ------------------------------------
-Add: 加载SCRIPT 更换主页内的固件！
-Add:添加Server 重新加入 Server - 退出服务器 Server
-Add: 在更新内添加了公告！
-Add: 脚本Ui顶部添加 版本号！
-Add: ESP内添加 新的固件 脚本和开关！
-Add: 所有内SOON的东西添加了介绍!
-Add: BENG - SCRIPT 制作内的固件更换 添加Sec Icon 版本和状态！
-Add: SCRIPT All
-Fix: BUG
-Fix: ESP BUG
-Fix: 河北唐县 Script 检测金钱错误问题 还是有这种BUG 在下个版本修复！
+Add:Tobpar - Mac
+Add:Box
+Add:边框设置
+Add:99 Day Script Add:XenithHub
+Add:TP|SOON
+Add:FPS - 修改至99999
+
+Fix:选择游戏 脚本错误
+------------------------------------
+
+2025/12/6 17:23
+新 UPD | SCRIPT - V2.2 | X2.6.3.7
+New:
+------------------------------------
+Add:心心念念的自定义圆角 和 自定义背景 和 Elements 现已上线 修改后 重启脚本即可
+Add:添加新的功能 99 Days in the forest
+Add:用户信息|注入器Tab内添加 New固件 Script启动时间 使用的脚本
+Add:Main Tab内添加 X-Ray
+Add:主页添加 Icon - 语言选择 在下个版本推出现开发中！
+Add:新的5个主题！
+Add:背面的 Shadow 现已有动画！
+Add:开启Elements Ui的文字将改为 BENG - SCRIPT Beta
+Fix:现在ESP目前有个固件为封锁的状态！
+Delete:河北唐县Tab内的叶脚本
+Fix:Bug
 ------------------------------------
