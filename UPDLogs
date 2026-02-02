@@ -1,47 +1,33 @@
 [Info] To use the latest UI version update, you need to enable the Mac UI switch in Settings. You can use it in conjunction with Elements.
 
 [Script] Rewrote Script structure
-
 [Script] Fixed Icon bug
 
 [UI] Tab added: Animation
-
 [UI] Top added: Reclaim Tab
-
 [UI] Icon added: Tab Icon. Enabled in Settings. Script needs to be restarted for the changes to apply!
-
 [UI] Removed Tag
 
 [Home]: Rewrote the Home UI. Copying Discord Web, etc., has been moved to the Discord Tab!
-
 [Home]: Added User
-
 [Home]: Added Pre-update | Script info
 
 [User|Executor]: Added Join Server time
-
 [User|Executor]: Fixed executor error
 
 [Update]: Rewrote code framework structure - Code
 
 [Main]: Rewrote Speed ​​Jump Camfov
-
 [Main]: Rewrote X ray
-
 [Main]: Added Void no-damage function
-
 [Main]: Added AFK may not work, under repair
-
 [Main]: Added Filing
-
 [Main]: Added Day
 
 [Main TP]: Added TP function: teleport player, view player, follow player
 
 [Main ESP]: Fixed inaccurate ESP health bar issue
-
 [Main ESP]: Fixed ESP framework issue: glitched
-
 [Main ESP]: Fixed ESP unable to use all colors
 
 [Script Blox]: Added Script Blox
@@ -49,11 +35,7 @@
 [Server]: Added Server Hop
 
 [Settings]: Rewrote UI background image settings; added Clear History Values
-
 [Settings]: Added 4 new themes
-
 [Settings]: Added UI background image transparency settings
-
 [Settings]: Added notification display option to choose between left and right side display
-
 [Settings]: Rewrote username and name masking
