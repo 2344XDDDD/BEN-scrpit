@@ -1,35 +1,41 @@
-新 UPD | SCRIPT - V2.2 | X2.8.3.2
-New:
-------------------------------------
-add: '餐厅大亨3 Script - Xenithhub'
-fix:修复了 速度|跳跃|重力|视野的Bug
-add: Script Discord Tab - 你可以复制VW Xenithhub的Discord频道
-add: '设置' Tab 添加 Script - Executor
-add:AFK 虚空无伤害的 Toggle
-fix:修复 'X-Ray' 的问题 会出现方块错误等
-add:将 '更新' Tab内的公告已迁移至外面 - 添加 '公告' Tab 迁移到了里面!
-------------------------------------
+[Info] 如果 需使用最新的Ui版本更新 你需要在设置内启用 Mac Ui的开关来进行使用最新的Ui 你可以搭配 Elements 来进行使用
 
-新 UPD | SCRIPT - V2.2 | X2.7.3.7
-New:
-------------------------------------
-Add: 加载SCRIPT 更换主页内的固件！
-Add:添加Server 重新加入 Server - 退出服务器 Server
-Add: 在更新内添加了公告！
-Add: 脚本Ui顶部添加 版本号！
-Add: ESP内添加 新的固件 脚本和开关！
-Add: 所有内SOON的东西添加了介绍!
-Add: BENG - SCRIPT 制作内的固件更换 添加Sec Icon 版本和状态！
-Add: SCRIPT All
-Fix: BUG
-Fix: ESP BUG
-Fix: 河北唐县 Script 检测金钱错误问题 还是有这种BUG 在下个版本修复！
-Add:Tobpar - Mac
-Add:Box
-Add:边框设置
-Add:99 Day Script Add:XenithHub
-Add:TP|SOON
-Add:FPS - 修改至99999
+[Script] 重写 Script 结构
+[Script] 修复 Icon 错误
 
-Fix:选择游戏 脚本错误
-------------------------------------
+[Ui] Tab added: 动画
+[Ui] 顶部 added: 收回Tab
+[Ui] Icon added: Tab Icon 在设置内启用 需重新启动Script才可应用！
+[Ui] 移除 Tag
+
+[Home]: 重写了Home Ui 将复制Discord Web 等 迁移到了Discord Tab 当中！
+[Home]: 增加 User
+[Home]: 增加 Pre update | Script info
+
+[User|Executor]: 增加 Join Server time
+[User|Executor]: 修复 执行器会出现错误
+
+[Update]: 重写了 代码框架结构 - Code
+
+[Main]: 重写了 Speed Jump Camfov
+[Main]: 重写了 X ray
+[Main]: 增加 虚空无伤害功能
+[Main]: 增加 AFK 可能不起作用 修复中
+[Main]: 增加 Filing
+[Main]: 增加 Day
+
+[Main TP]: 增加 TP 功能 传送玩家 查看玩家 跟随玩家
+
+[Main ESP]: 修复了 ESP 的血条不准确问题
+[Main ESP]: 修复 ESP 框架问题:错乱
+[Main ESP]: 修复 ESP 无法使用颜色 all
+
+[Script Blox]: 增加 Script Blox
+
+[Server]: 增加 Server Hop
+
+[Settings]: 重写了UI背景设置图片 增加Clear History Values
+[Settings]: 增加 4个新的主题
+[Settings]: 增加 Ui背景图透明设置
+[Settings]: 增加 通知可让选择左侧显示和右侧显示
+[Settings]: 重写 用户名 名称 打码
